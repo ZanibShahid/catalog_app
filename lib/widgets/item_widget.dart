@@ -21,7 +21,7 @@ class ItemWidget extends StatelessWidget {
         },
         leading: Image.asset(item.image),
         title: Text(item.name),
-        subtitle: Text(item.desc),
+        subtitle: Text(item.description),
         trailing: Text(
           "\$${item.price}",
           textScaleFactor: 1.5,

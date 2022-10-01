@@ -14,24 +14,24 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
-  void initState() {
-    // ignore: todo
-    // TODO: implement initState
-    super.initState();
-    loadData();
-  }
+  // void initState() {
+  //   // ignore: todo
+  //   // TODO: implement initState
+  //   super.initState();
+  //   loadData();
+  // }
 
-  loadData() async {
-    final catalogjson =
-        await rootBundle.loadString("assets/files/catalog.json");
-    final decodeData = jsonDecode(catalogjson);
-    var productData = decodeData["products"];
-    print(productData);
-  }
+  // loadData() async {
+  //   final catalogjson =
+  //       await rootBundle.loadString("assets/files/catalog.json");
+  //   final decodeData = jsonDecode(catalogjson);
+  //   var productData = decodeData["products"];
+  // }
 
   @override
   Widget build(BuildContext context) {
-    final dummyList = List.generate(20, ((index) => CatalogModel.items[0]));
+    final itemList = List.generate(
+        CatalogModel.items.length, ((index) => CatalogModel.items[index]));
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: Text("Catalogue App")),
@@ -39,10 +39,10 @@ class _HomePageState extends State<HomePage> {
       body: Center(
           // ignore: unnecessary_null_comparison
           child: ListView.builder(
-        itemCount: dummyList.length,
+        itemCount: itemList.length,
         itemBuilder: (context, index) {
           return ItemWidget(
-            item: dummyList[index],
+            item: itemList[index],
           );
         },
       )),

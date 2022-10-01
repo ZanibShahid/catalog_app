@@ -4,7 +4,7 @@ import 'package:catalog_app/pages/login_page.dart';
 import 'package:catalog_app/utils/routes.dart';
 import 'package:catalog_app/widgets/themes.dart';
 
-void main() {
+void main() async {
   runApp(MyApp());
 }
 
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         routes: {
           "/": (context) => LoginPage(),
           MyRoutes.homeRoute: (context) => HomePage(),
-          MyRoutes.loginRoute: (context) => LoginPage()  
+          MyRoutes.loginRoute: (context) => LoginPage()
         });
   }
 }
