@@ -1,10 +1,8 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:catalog_app/models/catalog.dart';
 import 'package:catalog_app/widgets/drawer.dart';
-import 'dart:convert';
 import '../widgets/item_widget.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,8 +13,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   // void initState() {
-  //   // ignore: todo
-  //   // TODO: implement initState
   //   super.initState();
   //   loadData();
   // }
@@ -38,14 +34,42 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Center(
           // ignore: unnecessary_null_comparison
-          child: ListView.builder(
-        itemCount: itemList.length,
-        itemBuilder: (context, index) {
-          return ItemWidget(
-            item: itemList[index],
-          );
-        },
-      )),
+          child: (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
+              ? GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 16,
+                      crossAxisSpacing: 16),
+                  itemBuilder: (context, index) {
+                    final items = CatalogModel.items[index];
+                    return Card(
+                      clipBehavior: Clip.antiAlias,
+                      child: GridTile(
+                        header: Container(
+                            decoration: BoxDecoration(color: Colors.deepPurple),
+                            padding: const EdgeInsets.all(12),
+                            child: Text(
+                              items.name,
+                              style: TextStyle(color: Colors.white),
+                            )),
+                        child: Image.network(items.image),
+                        footer: Container(
+                            decoration: BoxDecoration(color: Colors.black),
+                            padding: const EdgeInsets.all(12),
+                            child: Text(
+                              items.price.toString(),
+                              style: TextStyle(color: Colors.white),
+                            )),
+                      ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                    );
+                  },
+                  itemCount: CatalogModel.items.length,
+                )
+              : Center(
+                  child: CircularProgressIndicator(),
+                )),
       drawer: MyDrawer(),
     );
   }
