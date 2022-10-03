@@ -28,7 +28,7 @@ class CatalogModel {
         description: "Sony Playstation 5th generation",
         price: 500,
         color: "#544ee4",
-        image: "assets/images/4.jpg"),
+        image: "assets/images/4.png"),
     Item(
         id: 5,
         name: "Airpods Pro",
