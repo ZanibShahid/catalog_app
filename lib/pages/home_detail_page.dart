@@ -15,13 +15,15 @@ class HomeDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       backgroundColor: MyTheme.creamColor,
       bottomNavigationBar: Container(
         color: Colors.white,
         child: ButtonBar(
           alignment: MainAxisAlignment.spaceBetween,
-          buttonPadding: EdgeInsets.all(0),
+          buttonPadding: const EdgeInsets.all(0),
           children: [
             "\$${catalog.price}".toString().text.bold.xl4.red800.make(),
             ElevatedButton(
@@ -29,9 +31,10 @@ class HomeDetailPage extends StatelessWidget {
                     style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all(MyTheme.darkBluish),
-                        shape: MaterialStateProperty.all(StadiumBorder())),
-                    child: "Buy".text.make())
-                .wh(100, 50)
+                        shape:
+                            MaterialStateProperty.all(const StadiumBorder())),
+                    child: "Add to cart".text.make())
+                .wh(120, 50)
           ],
         ).p32(),
       ),
@@ -60,7 +63,8 @@ class HomeDetailPage extends StatelessWidget {
                           .xl2
                           .color(MyTheme.darkBluish)
                           .bold
-                          .make(),
+                          .make()
+                          .pOnly(top: 50),
                       catalog.description
                           .toString()
                           .text
@@ -68,7 +72,12 @@ class HomeDetailPage extends StatelessWidget {
                           .textStyle(context.captionStyle)
                           .make(),
                       10.heightBox,
-                    ]).p64(),
+                      "Ut sadipscing sea amet magna sea sed vero dolor. Sed stet sit no diam gubergren, amet amet erat lorem voluptua consetetur ipsum, et clita ea lorem takimata stet magna tempor rebum diam, takimata rebum et sed invidunt, et rebum takimata est ut ipsum aliquyam. Accusam et ipsum sanctus erat stet.."
+                          .text
+                          .textStyle(context.captionStyle)
+                          .make()
+                          .p16()
+                    ]),
               ),
             ))
           ],

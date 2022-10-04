@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
 
+import 'package:catalog_app/pages/cart_page.dart';
+import 'package:catalog_app/utils/routes.dart';
 import 'package:catalog_app/widgets/themes.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:catalog_app/models/catalog.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -33,6 +36,11 @@ class _HomePageState extends State<HomePage> {
     //     CatalogModel.items.length, ((index) => CatalogModel.items[index]));
     return Scaffold(
       backgroundColor: MyTheme.creamColor,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: MyTheme.darkBluish,
+        onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
+        child: Icon(CupertinoIcons.cart),
+      ),
       body: SafeArea(
         child: Container(
           padding: Vx.m32,
