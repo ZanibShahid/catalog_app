@@ -57,7 +57,11 @@ class CatalogItem extends StatelessWidget {
                 .toString()
                 .text
                 .lg
-                .color(MyTheme.darkBluish)
+                .color(
+                  Theme.of(context).brightness == Brightness.light
+                      ? MyTheme.darkBluish
+                      : Colors.white,
+                )
                 .bold
                 .make(),
             catalog.description
@@ -74,8 +78,10 @@ class CatalogItem extends StatelessWidget {
                 ElevatedButton(
                     onPressed: () {},
                     style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(MyTheme.darkBluish),
+                        backgroundColor: MaterialStateProperty.all(
+                            Theme.of(context).brightness == Brightness.light
+                                ? MyTheme.darkBluish
+                                : MyTheme.lightBluish),
                         shape: MaterialStateProperty.all(StadiumBorder())),
                     child: "Add to cart".text.make())
               ],
@@ -83,6 +89,6 @@ class CatalogItem extends StatelessWidget {
           ],
         )),
       ],
-    )).white.square(150).rounded.make().py(16);
+    )).color(context.cardColor).square(150).rounded.make().py(16);
   }
 }

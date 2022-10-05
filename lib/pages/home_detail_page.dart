@@ -18,9 +18,9 @@ class HomeDetailPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
       ),
-      backgroundColor: MyTheme.creamColor,
+      backgroundColor: context.canvasColor,
       bottomNavigationBar: Container(
-        color: Colors.white,
+        color: context.cardColor,
         child: ButtonBar(
           alignment: MainAxisAlignment.spaceBetween,
           buttonPadding: const EdgeInsets.all(0),
@@ -30,7 +30,12 @@ class HomeDetailPage extends StatelessWidget {
                     onPressed: () {},
                     style: ButtonStyle(
                         backgroundColor:
-                            MaterialStateProperty.all(MyTheme.darkBluish),
+                            // ignore: deprecated_member_use
+                            MaterialStateProperty.all(
+                          Theme.of(context).brightness == Brightness.light
+                              ? MyTheme.darkBluish
+                              : MyTheme.lightBluish,
+                        ),
                         shape:
                             MaterialStateProperty.all(const StadiumBorder())),
                     child: "Add to cart".text.make())
@@ -53,7 +58,7 @@ class HomeDetailPage extends StatelessWidget {
               edge: VxEdge.TOP,
               child: Container(
                 width: context.screenWidth,
-                color: Colors.white,
+                color: context.cardColor,
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -61,7 +66,11 @@ class HomeDetailPage extends StatelessWidget {
                           .toString()
                           .text
                           .xl2
-                          .color(MyTheme.darkBluish)
+                          .color(
+                            Theme.of(context).brightness == Brightness.light
+                                ? MyTheme.darkBluish
+                                : Colors.white,
+                          )
                           .bold
                           .make()
                           .pOnly(top: 50),
