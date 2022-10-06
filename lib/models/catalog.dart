@@ -61,6 +61,7 @@ class CatalogModel {
 //GET ITEM BY ID
 // ignore: null_closures
  static Item getById(int id) =>
+      // ignore: null_closures
       items.firstWhere((element) => element.id == id, orElse: null);
 //GET ITEM BY POSITION
  static Item getByPosition(int pos) => items[pos];
