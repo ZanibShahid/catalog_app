@@ -1,12 +1,14 @@
+import 'package:catalog_app/core/store.dart';
 import 'package:catalog_app/pages/cart_page.dart';
 import 'package:flutter/material.dart';
 import 'package:catalog_app/pages/home_page.dart';
 import 'package:catalog_app/pages/login_page.dart';
 import 'package:catalog_app/utils/routes.dart';
 import 'package:catalog_app/widgets/themes.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 void main() async {
-  runApp(MyApp());
+  runApp(VxState(store: MyStore(), child:(MyApp())));
 }
 
 // ignore: use_key_in_widget_constructors

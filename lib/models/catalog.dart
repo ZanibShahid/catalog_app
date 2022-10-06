@@ -1,7 +1,4 @@
 class CatalogModel {
-  static final catmodel = CatalogModel._internal();
-  CatalogModel._internal();
-  factory CatalogModel()=>catmodel; 
   static List<Item> items = [
     Item(
         id: 1,
