@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -26,6 +28,7 @@ class CartPage extends StatelessWidget {
 }
 
 class _CartTotal extends StatelessWidget {
+  // ignore: unused_element
   const _CartTotal({super.key});
 
   @override
@@ -44,7 +47,9 @@ class _CartTotal extends StatelessWidget {
               .make(),
           30.widthBox,
           ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: "Buying not supported yet!".text.make()));
+              },
               style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(
                       Theme.of(context).brightness == Brightness.light
@@ -58,6 +63,7 @@ class _CartTotal extends StatelessWidget {
 }
 
 class _CartList extends StatefulWidget {
+  // ignore: unused_element
   const _CartList({super.key});
 
   @override
