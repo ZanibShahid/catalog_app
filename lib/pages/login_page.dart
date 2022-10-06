@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-
+import 'package:velocity_x/velocity_x.dart';
 import '../utils/routes.dart';
+import '../widgets/themes.dart';
 
 // ignore: use_key_in_widget_constructors
 class LoginPage extends StatefulWidget {
@@ -31,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Material(
-        color: Colors.white,
+        color: context.canvasColor,
         child: SingleChildScrollView(
           child: Form(
             key: _formkey,
@@ -40,9 +41,11 @@ class _LoginPageState extends State<LoginPage> {
                 Image.asset(
                   "assets/images/hey.png",
                   fit: BoxFit.cover,
+                  height: 300.0,
+                  width: 550.0,
                 ),
                 SizedBox(
-                  height: 5.0,
+                  height: 15.0,
                 ),
                 Text(
                   "Welcome $name",
@@ -93,7 +96,9 @@ class _LoginPageState extends State<LoginPage> {
                       Material(
                         borderRadius:
                             BorderRadius.circular(changebutton ? 50 : 8),
-                        color: Colors.deepPurple,
+                        color: Theme.of(context).brightness == Brightness.light
+                            ? MyTheme.darkBluish
+                            : MyTheme.lightBluish,
                         child: InkWell(
                           onTap: () => moveToHome(context),
                           child: AnimatedContainer(
