@@ -5,6 +5,7 @@ import 'package:velocity_x/velocity_x.dart';
 class CatalogImage extends StatelessWidget {
   final String image;
   const CatalogImage({Key? key, required this.image})
+      // ignore: unnecessary_null_comparison
       : assert(image != null),
         super(key: key);
 

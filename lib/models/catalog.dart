@@ -58,6 +58,12 @@ class CatalogModel {
         color: "#7c95eb",
         image: "assets/images/8.png"),
   ];
+//GET ITEM BY ID
+// ignore: null_closures
+ static Item getById(int id) =>
+      items.firstWhere((element) => element.id == id, orElse: null);
+//GET ITEM BY POSITION
+ static Item getByPosition(int pos) => items[pos];
 }
 
 class Item {
