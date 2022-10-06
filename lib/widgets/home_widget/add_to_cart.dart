@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:catalog_app/core/store.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -15,18 +16,15 @@ class AddToCart extends StatelessWidget {
   }) : super(key: key);
 
  
-  final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
+    VxState.watch(context,on:[AddMutation]);
+    final CartModel _cart= (VxState.store as MyStore).cart;
     bool isInCart = _cart.items.contains(catalog) ?? false;
     return ElevatedButton(
         onPressed: () {
           if (!isInCart) {
-            isInCart = isInCart.toggle();
-            // ignore: no_leading_underscores_for_local_identifiers
-            final _catalog = CatalogModel();
-            _cart.catalog = _catalog;
-            _cart.add(catalog);
+            AddMutation(catalog);
           }
         },
         style: ButtonStyle(

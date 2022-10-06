@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:catalog_app/core/store.dart';
 import 'package:catalog_app/models/cart.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -31,9 +32,9 @@ class CartPage extends StatelessWidget {
 class _CartTotal extends StatelessWidget {
   // ignore: unused_element
   _CartTotal({super.key});
-  final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
+    final CartModel _cart = (VxState.store as MyStore).cart;
     return SizedBox(
       height: 200.0,
       child: Row(
@@ -65,9 +66,9 @@ class _CartTotal extends StatelessWidget {
 }
 
 class _CartList extends StatelessWidget{
-  final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
+    final CartModel _cart = (VxState.store as MyStore).cart;
     return _cart.items.isEmpty
         ? "Noting to show".text.xl3.makeCentered()
         : ListView.builder(
