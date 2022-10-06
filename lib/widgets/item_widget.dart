@@ -8,6 +8,7 @@ class ItemWidget extends StatelessWidget {
 
   // ignore: unnecessary_null_comparison
   const ItemWidget({Key? key, required this.item})
+      // ignore: unnecessary_null_comparison
       : assert(item != null),
         super(key: key);
 
@@ -21,7 +22,7 @@ class ItemWidget extends StatelessWidget {
         },
         leading: Image.asset(item.image),
         title: Text(item.name),
-        subtitle: Text(item.desc),
+        subtitle: Text(item.description),
         trailing: Text(
           "\$${item.price}",
           textScaleFactor: 1.5,
