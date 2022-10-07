@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, no_leading_underscores_for_local_identifiers, prefer_const_literals_to_create_immutables
 
 import 'package:catalog_app/core/store.dart';
 import 'package:catalog_app/models/cart.dart';
@@ -30,7 +30,7 @@ class CartPage extends StatelessWidget {
 }
 
 class _CartTotal extends StatelessWidget {
-  // ignore: unused_element
+  // ignore: unused_element, prefer_const_constructors_in_immutables
   _CartTotal({super.key});
   @override
   Widget build(BuildContext context) {
@@ -40,13 +40,17 @@ class _CartTotal extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          "\$${_cart.totalPrice}"
-              .text
-              .xl5
-              .color(Theme.of(context).brightness == Brightness.light
-                  ? MyTheme.darkBluish
-                  : Colors.white)
-              .make(),
+          VxBuilder(
+              mutations: {RemoveMutation},
+              builder: (context, _, child) {
+                return "\$${_cart.totalPrice}"
+                    .text
+                    .xl5
+                    .color(Theme.of(context).brightness == Brightness.light
+                        ? MyTheme.darkBluish
+                        : Colors.white)
+                    .make();
+              }),
           30.widthBox,
           ElevatedButton(
               onPressed: () {
@@ -65,9 +69,10 @@ class _CartTotal extends StatelessWidget {
   }
 }
 
-class _CartList extends StatelessWidget{
+class _CartList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    VxState.watch(context, on: [RemoveMutation]);
     final CartModel _cart = (VxState.store as MyStore).cart;
     return _cart.items.isEmpty
         ? "Noting to show".text.xl3.makeCentered()
@@ -76,9 +81,7 @@ class _CartList extends StatelessWidget{
             itemBuilder: (context, index) => ListTile(
                   leading: Icon(Icons.done),
                   trailing: IconButton(
-                      onPressed: () {
-                        _cart.remove(_cart.items[index]);
-                      },
+                      onPressed: () => RemoveMutation(_cart.items[index]),
                       icon: Icon(Icons.remove_circle_outline)),
                   title: _cart.items[index].name.text.make(),
                 ));

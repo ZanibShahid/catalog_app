@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables
 
 import 'package:catalog_app/core/store.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,16 +10,16 @@ import '../themes.dart';
 
 class AddToCart extends StatelessWidget {
   final Item catalog;
-   AddToCart({
+  AddToCart({
     Key? key,
     required this.catalog,
   }) : super(key: key);
 
- 
   @override
   Widget build(BuildContext context) {
-    VxState.watch(context,on:[AddMutation]);
-    final CartModel _cart= (VxState.store as MyStore).cart;
+    VxState.watch(context, on: [AddMutation, RemoveMutation]);
+    // ignore: no_leading_underscores_for_local_identifiers
+    final CartModel _cart = (VxState.store as MyStore).cart;
     bool isInCart = _cart.items.contains(catalog) ?? false;
     return ElevatedButton(
         onPressed: () {
