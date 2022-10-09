@@ -58,7 +58,6 @@ class _HomePageState extends State<HomePage> {
             color: Colors.white,
           ),
         ).badge(
-            color: Vx.red500,
             size: 22,
             count: _cart.items.length,
             textStyle:
