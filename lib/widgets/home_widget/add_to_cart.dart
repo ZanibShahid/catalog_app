@@ -20,7 +20,7 @@ class AddToCart extends StatelessWidget {
     VxState.watch(context, on: [AddMutation, RemoveMutation]);
     // ignore: no_leading_underscores_for_local_identifiers
     final CartModel _cart = (VxState.store as MyStore).cart;
-    bool isInCart = _cart.items.contains(catalog) ?? false;
+    bool isInCart = _cart.items.contains(catalog);
     return ElevatedButton(
         onPressed: () {
           if (!isInCart) {

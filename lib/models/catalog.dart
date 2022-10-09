@@ -1,63 +1,7 @@
+import 'dart:convert';
+
 class CatalogModel {
-  static List<Item> items = [
-    Item(
-        id: 1,
-        name: "iPhone 12 Pro",
-        description: "Apple iPhone 12th generation",
-        price: 999,
-        color: "#33505a",
-        image: "assets/images/1.png"),
-    Item(
-      id: 2,
-      name: "Pixel 5",
-      description: "Google Pixel phone 5th generation",
-      price: 699,
-      color: "#00ac51",
-      image: "assets/images/2.png",
-    ),
-    Item(
-        id: 3,
-        name: "M1 Macbook Air",
-        description: "Apple Macbook air with apple silicon",
-        price: 1099,
-        color: "#e0bfae",
-        image: "assets/images/3.png"),
-    Item(
-        id: 4,
-        name: "Playstation 5",
-        description: "Sony Playstation 5th generation",
-        price: 500,
-        color: "#544ee4",
-        image: "assets/images/4.png"),
-    Item(
-        id: 5,
-        name: "Airpods Pro",
-        description: "Apple Aipods Pro 1st generation",
-        price: 200,
-        color: "#e3e4e9",
-        image: "assets/images/5.png"),
-    Item(
-        id: 6,
-        name: "iPad Pro",
-        description: "Apple iPad Pro 2020 edition",
-        price: 799,
-        color: "#f73984",
-        image: "assets/images/6.png"),
-    Item(
-        id: 7,
-        name: "Galaxy S21 Ultra",
-        description: "Samsung Galaxy S21 Ultra 2021 edition",
-        price: 1299,
-        color: "#1c1c1c",
-        image: "assets/images/7.png"),
-    Item(
-        id: 8,
-        name: "Galaxy S21",
-        description: "Samsung Galaxy S21 2021 edition",
-        price: 899,
-        color: "#7c95eb",
-        image: "assets/images/8.png"),
-  ];
+  static List<Item> items = [];
 //GET ITEM BY ID
 // ignore: null_closures
   Item getById(int id) =>
@@ -75,10 +19,79 @@ class Item {
   final String color;
   final String image;
   Item(
-      {required this.id,
-      required this.name,
-      required this.description,
-      required this.price,
-      required this.color,
-      required this.image});
+      this.id, this.name, this.description, this.price, this.color, this.image);
+
+  Item copyWith({
+    int? id,
+    String? name,
+    String? description,
+    num? price,
+    String? color,
+    String? image,
+  }) {
+    return Item(
+      id ?? this.id,
+      name ?? this.name,
+      description ?? this.description,
+      price ?? this.price,
+      color ?? this.color,
+      image ?? this.image,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    final result = <String, dynamic>{};
+
+    result.addAll({'id': id});
+    result.addAll({'name': name});
+    result.addAll({'description': description});
+    result.addAll({'price': price});
+    result.addAll({'color': color});
+    result.addAll({'image': image});
+
+    return result;
+  }
+
+  factory Item.fromMap(Map<String, dynamic> map) {
+    return Item(
+      map['id']?.toInt() ?? 0,
+      map['name'] ?? '',
+      map['description'] ?? '',
+      map['price'] ?? 0,
+      map['color'] ?? '',
+      map['image'] ?? '',
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory Item.fromJson(String source) => Item.fromMap(json.decode(source));
+
+  @override
+  String toString() {
+    return 'Item(id: $id, name: $name, description: $description, price: $price, color: $color, image: $image)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Item &&
+        other.id == id &&
+        other.name == name &&
+        other.description == description &&
+        other.price == price &&
+        other.color == color &&
+        other.image == image;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^
+        name.hashCode ^
+        description.hashCode ^
+        price.hashCode ^
+        color.hashCode ^
+        image.hashCode;
+  }
 }
